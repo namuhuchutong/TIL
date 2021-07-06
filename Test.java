@@ -1,64 +1,70 @@
-class BankAccount{
-    int balance;
+class Chopstick{
+    boolean inUse;
 
-    synchronized void deposit(int amt){
-        int temp = balance + amt;
-        System.out.print("+");
-        balance = temp;
+    Chopstick(){
+        this.inUse = false;
+    }
+
+    synchronized void acquire() throws InterruptedException{
+        while(inUse)
+            wait();
+        inUse = true;
+    }
+
+    synchronized void release(){
+        inUse = false;
         notify();
     }
-
-    synchronized void withdraw(int amt){
-        while(balance <= 0)
-            try {
-                wait();
-            } catch (InterruptedException e) {} 
-        int temp = balance - amt;
-        System.out.print("-");
-        balance = temp;
-    }
-
-    int getBalance(){
-        return balance;
-    }
 }
 
-class Parent extends Thread{
-    BankAccount b;
+class Person extends Thread{
+    int id;
+    Chopstick stick;
 
-    Parent (BankAccount b){
-        this.b = b;
+    Person(int id, Chopstick stick){
+        this.id = id;
+        this.stick = stick;
     }
 
     public void run(){
-        for(int i = 0; i<100; i++){
-            b.deposit(1000);
-        }
-    }
-}
+        try{
+            while(true){
+                stick.acquire();
+                eating();
+            
+                stick.release();
+                thinking();
 
-class Child extends Thread{
-    BankAccount b;
-    Child(BankAccount b){
-        this.b = b;
+            }
+        }catch(InterruptedException e){}
     }
-    public void run(){
-        for(int i = 0; i<100; i++){
-            b.withdraw(1000);
-        }
+
+    void eating(){
+        System.out.println("["+id+"] eating");
     }
+    void thinking(){
+        System.out.println("["+id+"] thinking");
+    }
+
 }
 
 class Test{
-    public static void main(String[] args) throws InterruptedException{
-        BankAccount b = new BankAccount();
-        Parent p = new Parent(b);
-        Child c = new Child(b);
+    static final int num = 5;
 
-        p.start();
-        c.start();
-        p.join();
-        c.join();
-        System.out.println("\nbalance = "+b.getBalance());
+    public static void main(String[] args) {
+        Chopstick[] sticks = new Chopstick[num];
+        Person[] people = new Person[num];
+
+        for(int i =0; i<num; i++){
+            sticks[i] = new Chopstick();
+        }
+
+        for(int i = 0; i < num; i++){
+           people[i] = new Person(i, sticks[i]); 
+        }
+
+        for(int i = 0; i < num; i++){
+            people[i].start();
+        }
     }
 }
