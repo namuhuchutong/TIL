@@ -3,13 +3,11 @@ n, m = map(int, input().split())
 list_ = []
 
 for _ in range(n):
-    list_.append(list(map(int, input())))
+    list_.append(list(map(int, input().split())))
 
 count = 0 
 
 def dfs(x, y):
-
-    print(x, y)
 
     if x <= -1 or x >= n or y <= -1 or y >= m:
         return False
