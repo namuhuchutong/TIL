@@ -7,6 +7,7 @@ public class Theater {
        this.ticketseller = ticketSeller;
    }
 
+   /*
    public void enter(Audience audience){
        if(audience.getBag().hasInvitation()){
            Ticket ticket = ticketseller.getTicketOffice().getTicket();
@@ -17,5 +18,25 @@ public class Theater {
            ticketseller.getTicketOffice().plusAmount(ticket.getFee());
            audience.getBag().setTicket(ticket);
        }
+   }*/
+
+   public void enter(Audience audience){
+       ticketseller.sellTo(audience);
+       System.out.println("Audience is Enterring the Theater");
    }
+   
+   public static void main(String[] args) {
+    Ticket ticket = new Ticket(100);
+    Invitation invitation = new Invitation();   
+
+    Bag bag = new Bag(1000);
+    Audience one = new Audience(bag);
+
+    TicketOffice ticketOffice = new TicketOffice(0, ticket);
+    TicketSeller ticketseller = new TicketSeller(ticketOffice);
+
+    Theater theater = new Theater(ticketseller);
+
+    theater.enter(one);
+} 
 }

@@ -1,7 +1,7 @@
 package Basic.java.Ticket_Sale1;
 
-import Basic.java.Ticket_Sale1.Invitation;
-import Basic.java.Ticket_Sale1.Ticket;
+import java.Ticket_Sale1.Invitation;
+import java.Ticket_Sale1.Ticket;
 
 public class Bag {
     private long amount;
