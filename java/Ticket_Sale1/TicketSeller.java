@@ -1,6 +1,6 @@
-package Basic.java.Ticket_Sale1;
+package Ticket_Sale1;
 
-import java.Ticket_Sale1.TicketOffice;
+import Ticket_Sale1.TicketOffice;
 
 public class TicketSeller {
     private TicketOffice ticketOffice;
@@ -32,8 +32,14 @@ public class TicketSeller {
     }
     */
 
+    /* TicketOffice와 분리
     public void sellTo(Audience audience){
         ticketOffice.plusAmount(audience.buy(ticketOffice.getTicket()));
         System.out.println("TicketSeller sold a ticket.");
+    }
+    */
+
+    public void sellTo(Audience audience){
+        ticketOffice.sellTIcketTo(audience);
     }
 }

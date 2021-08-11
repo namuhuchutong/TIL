@@ -1,6 +1,6 @@
-package Basic.java.Ticket_Sale1;
+package Ticket_Sale1;
 
-import java.Ticket_Sale1.Bag;
+import Ticket_Sale1.Bag;
 
 public class Audience {
     private Bag bag;
@@ -15,6 +15,7 @@ public class Audience {
     }
     */
 
+    /* bag와 분리
     public long buy(Ticket ticket){
         if(bag.hasInvitation()){
             bag.setTicket(ticket);
@@ -26,5 +27,10 @@ public class Audience {
             System.out.println("Audience doesn't have a ticket. Buy a ticket(Fee : " + ticket.getFee() + ")");
             return ticket.getFee();
         }
+    }
+    */
+
+    public long buy(Ticket ticket){
+        return bag.hold(ticket);
     }
 }

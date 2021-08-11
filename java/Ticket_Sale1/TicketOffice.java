@@ -1,10 +1,10 @@
-package Basic.java.Ticket_Sale1;
+package Ticket_Sale1;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
-import Basic.java.Ticket_Sale1.Ticket;
+import Ticket_Sale1.Ticket;
 
 public class TicketOffice {
     private long amount;
@@ -14,6 +14,10 @@ public class TicketOffice {
         this.amount = amount;
         this.tickets.addAll(Arrays.asList(tickets));
     }
+
+    public void sellTIcketTo(Audience audience){
+        plusAmount(audience.buy(getTicket()));
+    } // -> 오히려 audience에 대한 정보를 알아야 함.
     
     public Ticket getTicket(){
         return tickets.remove(0);
