@@ -16,13 +16,11 @@ def bs(arr, target):
     return -1
 
 
-if __name__ == "__main__":
-    arr = [1, 3, 4, 5, 13, 324, 423]
-    print(arr)
+arr = [1, 3, 4, 5, 13, 324, 423]
+print(arr)
+result = bs(arr, 13)
 
-    result = bs(arr, 13)
-
-    if result == -1:
-        print("no target")
-    else:
-        print(result+1)
+if result == -1:
+    print("no target")
+else:
+    print(result+1)
