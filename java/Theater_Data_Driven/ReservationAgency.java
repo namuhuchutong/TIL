@@ -4,23 +4,23 @@ public class ReservationAgency {
     public Reservation reserve(Screening screening, Customer customer, int audienceCount){
         Movie movie = screening.getMovie();
 
-        boolean discounttable = false;
+        boolean discountable = false;
         for(DiscountCondition condition : movie.getDiscounConditions()){
             if(condition.getType() == DiscountConditionType.PERIOD){
-                discounttable = screening.getWhenScreened().getDayOfWeek().equals(condition.getDayOfWeek()) &&
+                discountable = screening.getWhenScreened().getDayOfWeek().equals(condition.getDayOfWeek()) &&
                  condition.getStartTime().compareTo(screening.getWhenScreened().toLocalTime()) <= 0 &&
                   condition.getEndTime().compareTo(screening.getWhenScreened().toLocalTime()) >= 0;     
             } else{
-                discounttable = condition.getSequence() == screening.getSequence();
+                discountable = condition.getSequence() == screening.getSequence();
             }
 
-            if(discounttable){
+            if(discountable){
                 break;
             }
         }
 
         Money fee;
-        if(discounttable){
+        if(discountable){
             Money discountAmount = Money.ZERO;
             switch(movie.getMovieType()){
                 case AMOUNT_DISCOUNT:
