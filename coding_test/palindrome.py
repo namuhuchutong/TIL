@@ -55,4 +55,4 @@ s2 = "race a car"
 #print(find("0P"))
 
 print(find2("aabdeenddbaagbddeedbaa"))
-print(len("aabdeenddbaagbddeedbaa"))
+print(len("aa bd ee (n) dd baa g b dd ee db aa"))

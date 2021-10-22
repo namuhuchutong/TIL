@@ -7,6 +7,8 @@ class MedianFinder:
         self._maxHeap = []
         self._minHeap = []
 
+    # 힙 초기화
+         
     def addNum(self, num):
         if len(self._minHeap) == 0 and len(self._maxHeap) == 0:
             heapq.heappush(self._minHeap, num)

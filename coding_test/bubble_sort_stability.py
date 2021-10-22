@@ -6,3 +6,4 @@ def sort(arr):
     return arr
 
 print(sort([(7,'a'),(5,'a'),(5,'b'),(7,'b'),(3,'c')]))
+# Do not sort characters(already sorted) -> stability

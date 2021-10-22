@@ -10,3 +10,4 @@ def sort(nums):
     return nums
 
 print(sort([(7,'a'),(7,'b'),(5,'a'),(5,'b'),(3,'c')]))
+# selection sort is not stable
