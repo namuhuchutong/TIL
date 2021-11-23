@@ -1,2 +1,7 @@
-package jacocotest;public class Moja {
+package jacocotest;
+
+public class Moja {
+    public String pull() {
+        return "";
+    }
 }
