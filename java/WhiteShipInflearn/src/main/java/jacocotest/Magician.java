@@ -12,7 +12,7 @@ import static net.bytebuddy.matcher.ElementMatchers.named;
 
 public class Magician {
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 //        ClassLoader classLoader = Magician.class.getClassLoader();
 //        TypePool typePool = TypePool.Default.of(classLoader);
 //
@@ -26,7 +26,7 @@ public class Magician {
 //            e.printStackTrace();
 //        }
 
-        Moja moja = new Moja();
-        System.out.println(moja.pull());
-    }
+//        Moja moja = new Moja();
+//        System.out.println(moja.pull());
+//    }
 }
