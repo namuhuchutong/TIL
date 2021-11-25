@@ -31,4 +31,8 @@ public class Book {
     public int h() {
         return 100;
     }
+
+    public int sum(int left, int right) {
+        return left + right;
+    }
 }
