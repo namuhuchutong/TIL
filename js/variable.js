@@ -146,6 +146,7 @@ let obj = JSON.parse(json, (key, value) => {
 console.log(obj.date.getDate());
 
 // sync, aysnc
+// 모든 함수, 변수는 호이스팅이 된다.
 // 1,3,2
 console.log('1');
 setTimeout(() => {
@@ -158,3 +159,144 @@ function Immediately(print) {
     print();
 }
 Immediately(() => console.log('is js shit?'));
+
+//callback hell
+// class UserStorage {
+//     loginUser(id, password, onSuccess, onError) {
+//         setTimeout(()=>{
+//             if(
+//                 (id === 'one' && password === '1') ||
+//                 (id === 'two' && password === '2')
+//             ) {
+//                 onSuccess(id);
+//             } else {
+//                 onError(new Error('not found'));
+//             }
+//         }, 2000);
+//     }
+
+//     getRoles(user, onSuccess, onError) {
+//         setTimeout( () => {
+//             if (user == 'one') {
+//                 onSuccess({name: 'one', role: 'admin'})
+//             } else {
+//                 onError(new Error('no access'));
+//             }
+//         }, 1000);
+//     }
+// }
+
+// const userStroage = new UserStorage();
+// const id  = prompt('Enter id');
+// const password = prompt('Enter pwd');
+// userStroage.loginUser(
+//     id, 
+//     password, 
+//     user => {
+//         userStroage.getRoles(
+//             user, 
+//             userWithRoles => {
+//                 alert(`hello ${userWithRoles.name}, ${userWithRoles.role}`);
+//             },
+//             error => {
+//                 console.log(error);
+//             }
+//         );
+//     }, 
+//     error => {
+//         console.log(error);
+//     }
+// );
+
+// promise : obj for async
+// when new Promise is created, the executor runs automatically.
+const promise = new Promise((reslove, reject) =>{
+    console.log('doing something');
+    setTimeout(()=>{
+        reslove('lol');
+        //reject(new Error('no network'));
+    }, 2000);
+});
+
+promise
+    .then((value) => {
+        console.log(value);
+    })
+    .catch(error => {
+        console.log(error);
+    })
+    .finally(() => {
+        console.log('finally');
+    }
+);
+
+const fetchNumber = new Promise((resolve, reject) => {
+    setTimeout( ()=> resolve(1), 1000);
+});
+
+fetchNumber
+    .then(num => num * 2)
+    .then(num => num * 3)
+    .then(num => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(num - 1), 1000);
+        });
+    })
+    .then(num => console.log(num))
+    .catch(error => console.log(error));
+
+class UserStorage2 {
+    loginUser(id, password, onSuccess, onError) {
+        return new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                if(
+                    (id === 'one' && password === '1') ||
+                    (id === 'two' && password === '2')
+                ) {
+                    resolve(id);
+                } else {
+                    reject(new Error('not found'));
+                }
+            }, 2000); 
+        });
+    }
+
+    getRoles(user) {
+        return new Promise((resolve, reject) => {
+            setTimeout( () => {
+                if (user === 'one') {
+                    resolve({name:'one', role: 'admin'});
+                } else {
+                    reject(new Error('no access'));
+                }
+            }, 1000);
+        });   
+    }
+}
+
+const us = new UserStorage2();
+const id = prompt('enter ur name');
+const password = prompt('enter ur password');
+us.loginUser(id, password)
+.then(us.getRoles)
+.then(user => alert(`what? ${user.name} is ${user.role}`))
+.catch(err => console.log(err));
+
+// async, await
+
+// async
+function fetchUsr() {
+    // do network request... so slow
+    return new Promise((resolve, reject) => {
+
+        resolve('one');
+    } );
+}
+
+async function fetchU() {
+    return 'two';
+}
+
+const u = fetchU();
+u.then(console.log);
+console.log(u);
