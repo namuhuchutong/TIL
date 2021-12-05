@@ -293,6 +293,7 @@ function fetchUsr() {
     } );
 }
 
+// 위처럼 할 필요없이 바로 promise로 만들기
 async function fetchU() {
     return 'two';
 }
@@ -300,3 +301,4 @@ async function fetchU() {
 const u = fetchU();
 u.then(console.log);
 console.log(u);
+
