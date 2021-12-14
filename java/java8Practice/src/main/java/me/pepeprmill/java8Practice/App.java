@@ -1,5 +1,8 @@
 package me.pepeprmill.java8Practice;
 
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -76,6 +79,17 @@ public class App {
         springOpt.ifPresent(oc -> System.out.println(oc.getTitle()));
         OnlineClass onlineClass1 = springOpt.orElseGet(App::createNewClass);
         System.out.println("onlineClass1 = " + onlineClass1.getTitle());
+
+        Instant now = Instant.now();
+        System.out.println(now);
+        System.out.println(now.atZone(ZoneId.of("UTC")));
+        ZonedDateTime zonedDateTime = now.atZone(ZoneId.systemDefault());
+        System.out.println(zonedDateTime);
+
+        DateTimeFormatter formatter =
+                DateTimeFormatter.ofPattern("MM/d/yyyy");
+        LocalDate date = LocalDate.parse("04/24/1996", formatter);
+        System.out.println(date);
     }
 
     private static OnlineClass createNewClass() {
