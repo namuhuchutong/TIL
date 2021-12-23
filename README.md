@@ -3,9 +3,6 @@
 ### 진행중
 
 <ul>
-  <li> 이것이 취업을 위한 코딩 테스트다 with 파이썬
-  <li> Codeup
-  <li> Blocking vs Non-Blocking, Sync vs Async
 </ul>
 <br>
 
