@@ -42,7 +42,6 @@ public class LambdaExample {
         final List<Integer> result4 = filter(list, lessThan7);
         System.out.println("lambda n < 7 = " + result4);
 
-
         // less than 2 and greater than 7
         final List<Integer> result5 = filter(list, greaterThan2.and(lessThan7));
         System.out.println("2 < n < 7 = " + result5);
