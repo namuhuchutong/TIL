@@ -61,7 +61,7 @@ class Section {
 
 @AllArgsConstructor
 @Data
-abstract class Product {
+abstract class ProductOld {
     private Long id;
     private String name;
     private BigDecimal price;
