@@ -1,11 +1,8 @@
-public class Main {
+class Main {
     
-    int test() {
-       double a = 10l;
-       return 1;
-    }
-    
-    class Test {
-        public static final String z = "Test!";
+    void add() {
+        int a = 1;
+        int b = 2;
+        int c = a+b;
     }
 }
